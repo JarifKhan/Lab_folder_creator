@@ -5,11 +5,23 @@ inpPath= input("😄 your folder's path: ")
 labNumber = input("😄 your Lab number(Example: 03): ")
 Id = input("😄 your ID: ")
 Sec = input("😄 your section(Optional): ")
+os_type = os.name
+directory_seperator = ""
 
 
+#Checks if os is Unix-based and changes the directory seperator accordingly
+#Works well with tilda too ^-^ be lazy!
+
+if os.name == "posix":
+    directory_seperator = "/"
+    if "~/" in inpPath:
+        inpPath = os.path.expanduser(inpPath)
+
+else:
+    directory_seperator = "\\"
 
 
-if "\\" in inpPath:
+if directory_seperator in inpPath:
     converter1 = inpPath.split("\\")
     pathCon = "/".join(converter1)
 
